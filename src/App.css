@@ -1,38 +1,49 @@
-.App {
+body,
+html,
+#root {
+  height: 100%;
+}
+
+html {
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  padding: 0.77rem 0;
+  margin-top: 0;
   text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.88rem;
+  color: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  height: 100%;
+  padding: 0 17% 10% 17%;
+  background-image: url("./phonebook_background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: #fff;
+
+  /* color: #fff; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.phone-list {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+
+  width: 100%;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: center;
 }

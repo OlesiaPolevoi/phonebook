@@ -1,0 +1,28 @@
+.navigation {
+  padding-bottom: 2rem;
+}
+button {
+  cursor: pointer;
+  width: 8.11rem;
+  padding: 0.77rem 0;
+  border-radius: 0.8rem;
+  background-color: #f8f9fa;
+  text-align: center;
+  font-size: 0.833rem;
+  transition: background-color 0.25s;
+  border: 0px;
+  color: #343a40;
+  font-weight: 700;
+}
+.contacts-button:hover {
+  background-color: #495057;
+  color: #fff;
+}
+
+.add-button:hover {
+  background-color: #495057;
+  color: #fff;
+}
+.nav-buttons :first-child {
+  margin-right: 20px;
+}
