@@ -1,7 +1,7 @@
 import React from "react";
 import "./Phone.css";
 
-function Phone({ contact }) {
+function Phone({ contact, deleteElementById }) {
   return (
     <div className="phone">
       <div>
@@ -13,7 +13,15 @@ function Phone({ contact }) {
         <h4> {contact.phone}</h4>
       </div>
       <div>
-        <button className="button-delete">Delete</button>
+        <button
+          className="button-delete"
+          onClick={() => {
+            console.log(contact);
+            deleteElementById(contact.id);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

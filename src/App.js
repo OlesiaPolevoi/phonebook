@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { addContact, deleteElementById } from "./DataBase";
 import Navigation from "./Navigation";
 import PhoneList from "./PhoneList";
 import AddContact from "./AddContact";
@@ -27,10 +28,17 @@ function App() {
         </div>
 
         <div className="phone-list">
-          {screenState === "phoneList" && <PhoneList />}
+          {screenState === "phoneList" && (
+            <PhoneList deleteElementById={deleteElementById} />
+          )}
         </div>
 
-        {screenState === "addContact" && <AddContact />}
+        {screenState === "addContact" && (
+          <AddContact
+            addContact={addContact}
+            displayPhoneList={displayPhoneList}
+          />
+        )}
       </div>
     </div>
   );
