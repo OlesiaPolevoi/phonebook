@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import "./AddContact.css";
+import Axios from "axios";
 
-function AddContact({ addContact, displayPhoneList }) {
+function AddContact({ displayPhoneList }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
+
+  const addContact = (firstName, lastName, phone, callback) => {
+    Axios.post("https://cag958z2q6.execute-api.us-east-1.amazonaws.com/", {
+      phone,
+      firstName,
+      lastName,
+    }).then(() => {
+      callback();
+    });
+  };
 
   return (
     <div className="add-contact">
@@ -38,9 +49,7 @@ function AddContact({ addContact, displayPhoneList }) {
         ></input>
         <button
           onClick={() => {
-            addContact({ name: firstName, lastname: lastName, phone: phone });
-            //change page
-            displayPhoneList();
+            addContact(firstName, lastName, phone, displayPhoneList);
           }}
           className="button-add"
         >

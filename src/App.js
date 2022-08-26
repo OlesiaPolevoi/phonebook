@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import { addContact, deleteElementById } from "./DataBase";
+
 import Navigation from "./Navigation";
 import PhoneList from "./PhoneList";
 import AddContact from "./AddContact";
+import Axios from "axios";
 
 function App() {
   const [screenState, setScreenState] = useState("phoneList"); //"phoneList" or "addContact"
+  const [contacts, setContacts] = useState([]);
 
-  //создать функцию - открыть лист контактов при вызове которой засетим нужный стэйт
+  const getContacts = () => {
+    Axios.get("https://cag958z2q6.execute-api.us-east-1.amazonaws.com/").then(
+      (response) => {
+        console.log(response);
+        setContacts(response?.data?.items ?? []);
+      }
+    );
+  };
+
+  useEffect(() => {
+    getContacts();
+  }, []);
+
   const displayPhoneList = () => {
     setScreenState("phoneList");
+    getContacts();
   };
 
   const displayAddContacts = () => {
@@ -29,15 +44,12 @@ function App() {
 
         <div className="phone-list">
           {screenState === "phoneList" && (
-            <PhoneList deleteElementById={deleteElementById} />
+            <PhoneList contacts={contacts} getContacts={getContacts} />
           )}
         </div>
 
         {screenState === "addContact" && (
-          <AddContact
-            addContact={addContact}
-            displayPhoneList={displayPhoneList}
-          />
+          <AddContact displayPhoneList={displayPhoneList} />
         )}
       </div>
     </div>

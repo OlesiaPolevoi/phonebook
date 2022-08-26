@@ -1,31 +1,18 @@
-import React, { useState } from "react";
-import { dataBase } from "./DataBase";
+import React from "react";
 import Phone from "./Phone";
 import "./PhoneList.css";
 
-function PhoneList({ deleteElementById }) {
-  //Создать компониент "список", который должен появляться если пользователь нажал кнопку список
-  const [contacts, setContacts] = useState(dataBase);
-
-  const deleteWithState = (id) => {
-    const newContactList = deleteElementById(id);
-    setContacts([...newContactList]);
-  };
-
-  // useEffect(() => {
-  //   setContacts(dataBase);
-  // }, [dataBase]);
-
-  // const deleteContact = (id) => {
-  //   const newContacts = contacts.filter((contact) => contact.id !== id);
-  //   setContacts(newContacts);
-  // };
+function PhoneList({ contacts, deleteWithState, getContacts }) {
   return (
     <div className="phone-list">
       {contacts.map((contact, i) => {
         return (
-          <div key={contact.id}>
-            <Phone contact={contact} deleteElementById={deleteWithState} />
+          <div key={contact.phone}>
+            <Phone
+              contact={contact}
+              deleteElementById={deleteWithState}
+              getContacts={getContacts}
+            />
           </div>
         );
       })}
@@ -34,19 +21,3 @@ function PhoneList({ deleteElementById }) {
 }
 
 export default PhoneList;
-
-// return (
-//   <div className="TrackList">
-//     {tracks.map((track) => {
-//       return (
-//         <Track
-//           track={track}
-//           key={track.id}
-//           onAdd={onAdd}
-//           onRemove={onRemove}
-//           isRemoval={isRemoval}
-//         />
-//       );
-//     })}
-//   </div>
-// );

@@ -1,12 +1,21 @@
 import React from "react";
 import "./Phone.css";
+import Axios from "axios";
 
-function Phone({ contact, deleteElementById }) {
+function Phone({ contact, getContacts }) {
+  const deleteElement = (phone, callback) => {
+    Axios.delete(
+      `https://cag958z2q6.execute-api.us-east-1.amazonaws.com/${phone}`
+    ).then(() => {
+      callback();
+    });
+  };
+
   return (
     <div className="phone">
       <div>
         <p>
-          {contact.name} {contact.lastname}
+          {contact.firstName} {contact.lastName}
         </p>
       </div>
       <div>
@@ -16,8 +25,7 @@ function Phone({ contact, deleteElementById }) {
         <button
           className="button-delete"
           onClick={() => {
-            console.log(contact);
-            deleteElementById(contact.id);
+            deleteElement(contact.phone, getContacts);
           }}
         >
           Delete
